@@ -1,0 +1,239 @@
+:root {
+  --accent: #f4c68a;
+  --ink: #eef7fb;
+  --muted: rgba(218, 234, 241, 0.5);
+  --line: rgba(212, 231, 239, 0.15);
+  color: var(--ink);
+  background: #02050a;
+  font-family: "SFMono-Regular", "Roboto Mono", "Noto Sans Mono CJK SC", monospace;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+button,
+a { color: inherit; font: inherit; }
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 64% 46%, color-mix(in srgb, var(--accent) 6%, transparent), transparent 34%),
+    linear-gradient(145deg, #06101a 0%, #02050a 55%, #060b13 100%);
+  transition: background 700ms ease;
+}
+
+#particle-field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(2, 5, 10, 0.74), transparent 42%),
+    radial-gradient(circle, transparent 38%, rgba(2, 5, 10, 0.58) 100%);
+}
+
+.masthead {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) minmax(10rem, 30vw) 5rem;
+  align-items: center;
+  gap: 2rem;
+  height: 4.5rem;
+  padding: 0 2rem;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(rgba(2, 5, 10, 0.78), transparent);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+}
+
+.brand { text-decoration: none; }
+
+.progress {
+  height: 1px;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(calc(1 / 21));
+  transform-origin: left;
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1), background 500ms ease;
+}
+
+#effect-count { color: var(--muted); text-align: right; }
+
+.effect-copy {
+  position: absolute;
+  z-index: 2;
+  left: clamp(1.5rem, 5vw, 4.5rem);
+  bottom: clamp(7.2rem, 15vh, 9rem);
+  width: min(40rem, 50vw);
+  pointer-events: none;
+  text-shadow: 0 0 2rem rgba(0, 0, 0, 0.88);
+}
+
+#effect-feeling,
+#effect-name-en,
+.interaction {
+  margin: 0;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+}
+
+#effect-feeling {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--accent);
+}
+
+#effect-feeling::before {
+  width: 2.5rem;
+  height: 1px;
+  background: currentColor;
+  content: "";
+}
+
+h1 {
+  margin: 1.1rem 0 0;
+  font-family: "Songti SC", "Noto Serif CJK SC", serif;
+  font-size: clamp(3.4rem, 7vw, 7.8rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+#effect-name-en {
+  margin-top: 0.85rem;
+  color: var(--muted);
+}
+
+.controls {
+  position: absolute;
+  z-index: 3;
+  right: 2rem;
+  bottom: 2rem;
+  left: 2rem;
+  display: grid;
+  grid-template-columns: auto minmax(10rem, 32rem) auto;
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.controls button {
+  padding: 0.4rem 0;
+  cursor: pointer;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  font-size: 0.54rem;
+  letter-spacing: 0.14em;
+}
+
+#effect-nav {
+  display: grid;
+  grid-template-columns: repeat(21, 1fr);
+  gap: 0.3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#effect-nav button {
+  width: 100%;
+  height: 1.2rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+#effect-nav button::after {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: rgba(220, 235, 242, 0.22);
+  content: "";
+}
+
+#effect-nav button[aria-current="true"]::after {
+  height: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 0.5rem var(--accent);
+}
+
+.interaction {
+  position: absolute;
+  top: 7rem;
+  left: clamp(1.5rem, 5vw, 4.5rem);
+  z-index: 2;
+  color: rgba(218, 234, 241, 0.3);
+}
+
+@media (max-width: 760px) {
+  .masthead {
+    grid-template-columns: 1fr 4.5rem;
+    gap: 1rem;
+    height: 4.2rem;
+    padding-inline: 1rem;
+  }
+
+  .progress,
+  .interaction { display: none; }
+
+  .vignette {
+    background: linear-gradient(rgba(2, 5, 10, 0.56), transparent 48%, rgba(2, 5, 10, 0.68));
+  }
+
+  .effect-copy {
+    top: 6.2rem;
+    bottom: auto;
+    left: 1rem;
+    width: calc(100% - 2rem);
+  }
+
+  h1 { font-size: clamp(2.8rem, 13vw, 4.4rem); }
+
+  .controls {
+    right: 1rem;
+    bottom: 1.2rem;
+    left: 1rem;
+    grid-template-columns: auto 1fr auto;
+  }
+
+  #effect-nav { gap: 0.12rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+
+body[data-capture="true"] .controls,
+body[data-capture="true"] .interaction { display: none; }
+
+body[data-capture="true"] .effect-copy {
+  bottom: 3.5rem;
+}

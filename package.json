@@ -1,0 +1,13 @@
+{
+  "name": "star-particle-fx-skill",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node --check assets/demo/main.js && node --check assets/demo/catalog.js",
+    "build:check": "node scripts/check-skill.mjs",
+    "check": "node scripts/check-skill.mjs",
+    "lint": "node --check scripts/scaffold.mjs && node --check scripts/check-skill.mjs && python3 -m py_compile scripts/capture-previews.py tests/qa_demo.py",
+    "test": "node --test tests/*.test.mjs"
+  }
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#02050a" />
+    <title>StarParticleFX — Effect Atlas</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="stage">
+      <canvas id="particle-field" aria-hidden="true"></canvas>
+      <div class="vignette" aria-hidden="true"></div>
+      <header class="masthead">
+        <a class="brand" href="#pattern-convergence">STAR PARTICLE FX</a>
+        <div class="progress"><span id="progress-bar"></span></div>
+        <span id="effect-count">01 / 21</span>
+      </header>
+
+      <section class="effect-copy" aria-live="polite">
+        <p id="effect-feeling">聚合 · 揭示 · 品牌记忆</p>
+        <h1 id="effect-name-zh">星辰汇聚成图案</h1>
+        <p id="effect-name-en">PATTERN CONVERGENCE</p>
+      </section>
+
+      <nav class="controls" aria-label="效果选择">
+        <button id="previous" type="button" aria-label="上一个效果">PREV</button>
+        <ol id="effect-nav"></ol>
+        <button id="next" type="button" aria-label="下一个效果">NEXT</button>
+      </nav>
+
+      <p class="interaction">MOVE POINTER · PRESS ← →</p>
+    </main>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

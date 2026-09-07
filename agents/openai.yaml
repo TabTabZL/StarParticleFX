@@ -1,0 +1,5 @@
+interface:
+  display_name: "StarParticleFX"
+  short_description: "Create stellar particle effects for web interfaces"
+  brand_color: "#7DD3FC"
+  default_prompt: "Use $star-particle-fx to create a polished stellar particle effect for this web interface."
