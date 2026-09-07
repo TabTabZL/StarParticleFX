@@ -17,11 +17,16 @@ if (!skill.includes("references/effect-catalog.md")) throw new Error("SKILL.md m
 for (const effect of EFFECTS) {
   const recipe = resolve(root, `references/recipes/${effect.slug}.md`);
   const video = resolve(root, `docs/media/${effect.slug}.mp4`);
+  const animation = resolve(root, `docs/media/${effect.slug}.gif`);
   await access(recipe);
   await access(video);
+  await access(animation);
   if (!catalog.includes(`recipes/${effect.slug}.md`)) throw new Error(`Catalog missing recipe: ${effect.slug}`);
-  if (!readme.includes(`docs/media/${effect.slug}.mp4`)) throw new Error(`README missing video: ${effect.slug}`);
+  if (!readme.includes(`![${effect.nameZh}](docs/media/${effect.slug}.gif)`)) {
+    throw new Error(`README missing inline effect: ${effect.slug}`);
+  }
   if ((await stat(video)).size < 10_000) throw new Error(`Video is unexpectedly small: ${effect.slug}`);
+  if ((await stat(animation)).size < 10_000) throw new Error(`Animation is unexpectedly small: ${effect.slug}`);
 }
 
-console.log("StarParticleFX verified: 21 recipes and 21 MP4 previews.");
+console.log("StarParticleFX verified: 21 recipes, MP4 sources, and inline README effects.");
